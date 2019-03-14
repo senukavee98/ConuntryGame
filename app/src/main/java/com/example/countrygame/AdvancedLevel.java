@@ -110,7 +110,7 @@ public class AdvancedLevel extends AppCompatActivity {
             }
         } // ---- end the operation for edit text 1 -------
 
-//Edit text 2 
+//Edit text 2
         for (int i = 0; i < value.length; i++) {
             if (edittext_value2.equals(id[i])) {
                 k = guessTheCountry.findArrayIndexInt(value, i);
@@ -128,6 +128,8 @@ public class AdvancedLevel extends AppCompatActivity {
             }
         } // ---- end the operation for edit text 2 -------
 
+
+    //For edit text 3
         for (int i = 0; i < value.length; i++) {
             if (edittext_value3.equals(id[i])) {
                 k = guessTheCountry.findArrayIndexInt(value, i);
