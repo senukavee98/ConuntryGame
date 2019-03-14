@@ -110,7 +110,7 @@ public class AdvancedLevel extends AppCompatActivity {
             }
         } // ---- end the operation for edit text 1 -------
 
-
+//Edit text 2 
         for (int i = 0; i < value.length; i++) {
             if (edittext_value2.equals(id[i])) {
                 k = guessTheCountry.findArrayIndexInt(value, i);
