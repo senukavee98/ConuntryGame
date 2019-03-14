@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Country Game</string>
+    <string name="page1_header">Start Country Game</string>
+    <string name="subtitle">Choose a Button</string>
+    <string name="guess_hints">Guess Hints</string>
+    <string name="guess_the_flag">Guess the Flag</string>
+    <string name="advanced_level">Advanced Level</string>
+    <string name="guess_the_country">Guess the Country</string>
+    <string name="background_image">backgroundImage</string>
+    <string name="task_01">Guess the Correct country of the given Flag</string>
+    <string name="next">Next</string>
+    <string name="header3">Choose the correct Flag</string>
+    <string name="flag_01">Flag_01</string>
+    <string name="flag_02">Flag_02</string>
+    <string name="flag_03">Flag_03</string>
+    <string name="nextButton">Next</string>
+    <string name="submit">SUBMIT</string>
+    <string name="start_game">START THE GAME</string>
+
+</resources>
