@@ -38,8 +38,20 @@
         android:layout_marginTop="127dp"
         android:layout_marginEnd="6dp"
         android:layout_marginRight="6dp"
-        android:contentDescription="random flag"
+        android:contentDescription="@string/random_flag"
         android:scaleType="centerInside" />
+
+    <Button
+        android:id="@+id/gameStartbtn"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="329dp"
+        android:onClick="nextFlag"
+        android:text="@string/start_game_btn"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
 
     <TextView
         android:id="@+id/correct_answer"
@@ -118,7 +130,24 @@
         android:layout_marginRight="35dp"
         android:layout_marginBottom="36dp"
         android:onClick="nextFlag"
-        android:text="@string/submit" />
+        android:text="@string/nextbtn_1" />
 
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="36dp"
+        android:onClick="submitSelected"
+        android:text="@string/submitBtn_1"
+        android:visibility="visible" />
 
 </RelativeLayout>

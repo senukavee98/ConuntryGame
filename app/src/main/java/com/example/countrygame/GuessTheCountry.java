@@ -18,8 +18,9 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
 
     //ImageView declearation
     private ImageView countryImage;
-    private Button button1_start;
+    private Button start_game_button;
     private Button nextButton;
+    private Button submitButton;
     private Spinner spinner;
     private TextView correctAnswer;
     private TextView wrongAnswer;
@@ -140,12 +141,13 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
       //  countryImage.setImageResource(R.drawable.ae);
 
         nextButton = findViewById(R.id.next);
+        submitButton = findViewById(R.id.submit);
 
         spinner = findViewById(R.id.spinner);
         correctAnswer = findViewById(R.id.correct_answer);
         wrongAnswer = findViewById(R.id.wrong_answer);
         finalAnswer = findViewById(R.id.final_answer);
-        //button1_start= findViewById(R.id.button1_start);
+        start_game_button= findViewById(R.id.gameStartbtn);
 
 
         //----------spinner click listener-----------------------
@@ -180,29 +182,47 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
 
     //-------------------------- Random flag change method ---------------------------//
     int pickedImage = 0, lastPicked = 0;
+    boolean status1 = false , status2 = false;
+
     public void nextFlag(View view) {
 
-       //button1_start.setVisibility(View.INVISIBLE);
-        correctAnswer.setVisibility(View.VISIBLE);
-        wrongAnswer.setVisibility(View.VISIBLE);
-        finalAnswer.setVisibility(View.VISIBLE);
-        nextButton.setText("Next");
+       start_game_button.setVisibility(View.INVISIBLE);
         correctAnswer.setText("");
         wrongAnswer.setText("");
         finalAnswer.setText("");
-        // countryImage.setImageResource(flags[random.nextInt(flags.length)]);
-        //remove duplications
+        submitButton.setVisibility(View.VISIBLE);
 
+     //-------remove duplications------//
         do {
             pickedImage = random.nextInt(flags.length);
 
         } while (pickedImage == lastPicked);
 
+    // Equal to the last picked to the picked image
         lastPicked = pickedImage;
         pickedId = findArrayIndexInt(flags,pickedImage);
 
-        //----------------- display random image -----------------------
+        //----------------- display random image -----------------------//
         countryImage.setImageResource(flags[random.nextInt(flags.length)]);
+
+
+   }
+
+   public void submitSelected(View view){
+       // nextButton.setVisibility(View.VISIBLE);
+       correctAnswer.setVisibility(View.VISIBLE);
+       wrongAnswer.setVisibility(View.VISIBLE);
+       finalAnswer.setVisibility(View.VISIBLE);
+       submitButton.setVisibility(View.INVISIBLE);
+       if (status1){
+           correctAnswer.setText(feedback1);
+           status1 = false;
+
+       }else if (status2){
+           wrongAnswer.setText(feedback1);
+           finalAnswer.setText(feedback2);
+
+       }
 
    }
 
@@ -259,9 +279,10 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
 
 //-------------------Spinner auto generated methods-----------------------
 
+    String feedback1,feedback2;
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //------ On selecting a spinner item ----------
+        /*//------ On selecting a spinner item ----------
         String item = parent.getItemAtPosition(position).toString();
 
         //---------- getting indexes of elements --------
@@ -281,9 +302,20 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
 
             fAns = country_name[arrayIndexOfFlag];
             finalAnswer.setText(fAns);
-        }
+        }*/
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+
+        if (pickedImage==position){
+            feedback1 = "CONGRATULATIONS, The Answer is Correct !!!";
+            status1 = true;
+        }else{
+            feedback1="SORRY, The Answer is Incorrect !!!";
+            position=pickedImage;
+             status2=true;
+
+             feedback2=parent.getItemAtPosition(position).toString();
+        }
+      //  Toast.makeText(parent.getContext(), "Selected: " + position, Toast.LENGTH_LONG).show();
 
     }
 

@@ -14,7 +14,10 @@
     <string name="flag_02">Flag_02</string>
     <string name="flag_03">Flag_03</string>
     <string name="nextButton">Next</string>
-    <string name="submit">SUBMIT</string>
     <string name="start_game">START THE GAME</string>
+    <string name="start_game_btn">START THE GAME</string>
+    <string name="random_flag">random flag</string>
+    <string name="nextbtn_1">NEXT</string>
+    <string name="submitBtn_1">SUBMIT</string>
 
 </resources>
