@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class GuessTheFlag extends AppCompatActivity {
@@ -22,12 +20,12 @@ public class GuessTheFlag extends AppCompatActivity {
     private TextView correctResult;
     private TextView wrongResult;
     private Button buttonStart;
-    private HashMap<Integer, String> threeElementList = new HashMap<Integer, String>();
+  /*  private HashMap<Integer, String> threeElementList = new HashMap<Integer, String>();
     private Object[] keys;
     Object keyId;
     String randomFlagName;
     private List<Integer> id;
-    private List<String> value;
+    private List<String> value;*/
 
     GuessTheCountry guessTheCountry = new GuessTheCountry();
 
@@ -109,14 +107,11 @@ public class GuessTheFlag extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guess_the_flag);
 
+        //Imageview
         flag_01 = findViewById(R.id.flag1);
         flag_02 = findViewById(R.id.flag2);
         flag_03 = findViewById(R.id.flag3);
 
-        /*flag_01.setImageResource(R.drawable.ai);
-        flag_02.setImageResource(R.drawable.bl);
-        flag_03.setImageResource(R.drawable.mc);
-*/
         flagName = findViewById(R.id.flag_name);
         correctResult = findViewById(R.id.correct_results);
         wrongResult = findViewById(R.id.wrong_results);
@@ -124,43 +119,75 @@ public class GuessTheFlag extends AppCompatActivity {
 
     }
 
-    int pickedImage = 0, lastPicked = 0;
+        int pickedImage1, lastPicked1;
+        int pickedImage2, lastPicked2;
+        int pickedImage3, lastPicked3;
+        int count=1,countryName_index;
+        String name1,name2,name3;
 
     public void nextThreeFlags(View view) {
 
         buttonStart.setVisibility(View.INVISIBLE);
+        correctResult.setText("");
 
 
-        // countryImage.setImageResource(flags[random.nextInt(flags.length)]);
-        //remove duplications
-        // changeFlagName();
-
-        do {
-            pickedImage = random.nextInt(flags.length);
-
-        } while (pickedImage == lastPicked);
-
-        lastPicked = pickedImage;
-
-        //------------ display random image ------------------
+        //------------ display random image ------------------//
         // **** for flag 01 **** //
-        int fi1 = flags[random.nextInt(flags.length)];
+        do {
+            pickedImage1 = random.nextInt(guessTheCountry.flags.length);
+
+        } while (pickedImage1 == lastPicked1);
+
+        lastPicked1 = pickedImage1;
+        int fi1 = guessTheCountry.flags[pickedImage1];
         flag_01.setImageResource(fi1);
-        int fj1 = guessTheCountry.findArrayIndexInt(flags, fi1);
-        String name1 = guessTheCountry.country_name[fj1];
+
 
         // **** for flag 02 **** //
-        int fi2 = flags[random.nextInt(flags.length)];
+        do {
+            pickedImage2 = random.nextInt(guessTheCountry.flags.length);
+
+        } while (pickedImage2 == lastPicked2);
+        lastPicked2 = pickedImage2;
+        int fi2 = guessTheCountry.flags[pickedImage2];
         flag_02.setImageResource(fi2);
-        int fj2 = guessTheCountry.findArrayIndexInt(flags, fi2);
-        String name2 = guessTheCountry.country_name[fj2];
 
         // **** for flag 03 **** //
-        int fi3 = flags[random.nextInt(flags.length)];
-        flag_03.setImageResource(fi3);
-        int fj3 = guessTheCountry.findArrayIndexInt(flags, fi3);
-        String name3 = guessTheCountry.country_name[fj3];
+        do {
+            pickedImage3 = random.nextInt(guessTheCountry.flags.length);
 
+        } while (pickedImage3 == lastPicked3);
+        lastPicked3 = pickedImage3;
+        int fi3 = guessTheCountry.flags[pickedImage3];
+        flag_03.setImageResource(fi3);
+
+
+
+        do {
+            countryName_index = random.nextInt(guessTheCountry.country_name.length);
+
+            if (countryName_index==pickedImage1 || countryName_index == pickedImage2 || countryName_index ==pickedImage3){
+                String name = guessTheCountry.country_name[countryName_index];
+                flagName.setText(name);
+            }
+        }while (!(countryName_index==pickedImage1 || countryName_index == pickedImage2 || countryName_index ==pickedImage3));
+
+        /*if (count==1){
+            name1 =guessTheCountry.country_name[pickedImage2];
+            flagName.setText(name1);
+            count++;
+        }else if (count==2){
+            name2=(guessTheCountry.country_name[pickedImage1]);
+            flagName.setText(name2);
+            count++;
+        }else if (count==3){
+            name3=(guessTheCountry.country_name[pickedImage3]);
+            flagName.setText(name3);
+            count=1;
+        }
+*/
+        /*int fj3 = guessTheCountry.findArrayIndexInt(flags, fi3);
+        String name3 = guessTheCountry.country_name[fj3];
         // ---- adding elements to HashMap -------
         threeElementList.put(fj1, name1);
         threeElementList.put(fj2, name2);
@@ -175,18 +202,69 @@ public class GuessTheFlag extends AppCompatActivity {
         wrongResult.setText("");
 
         //-------adding to the two lists----------------
-     /*   id.add(fj1); value.add(name1);
+     *//*   id.add(fj1); value.add(name1);
         id.add(fj2); value.add(name2);
         id.add(fj3); value.add(name3);
 
        flagName.setText("Country Name : " + name1);
 */
-
     }
 
     int k = 0;
+    int index1,index2,index3;
 
     public void clickableImage(View view) {
+
+            /*index1 = findArrayIndex(guessTheCountry.country_name,name1);
+            index2 = findArrayIndex(guessTheCountry.country_name,name2);
+            index3 = findArrayIndex(guessTheCountry.country_name,name3);
+*/
+            if (countryName_index==pickedImage1){
+                correctResult.setText("CORRECT !!!");
+                correctResult.setTextColor(getResources().getColor(R.color.green));
+            }else {
+                correctResult.setText("WRONG !!!");
+                correctResult.setTextColor(getResources().getColor(R.color.red));
+            }
+
+            if (countryName_index==pickedImage2){
+                correctResult.setText("CORRECT !!!");
+                correctResult.setTextColor(getResources().getColor(R.color.green));
+
+            } else {
+                correctResult.setText("WRONG !!!");
+                correctResult.setTextColor(getResources().getColor(R.color.red));
+            }
+
+            if (countryName_index==pickedImage3){
+                correctResult.setText("CORRECT !!!");
+                correctResult.setTextColor(getResources().getColor(R.color.green));
+            }else {
+                correctResult.setText("WRONG !!!");
+                correctResult.setTextColor(getResources().getColor(R.color.red));
+            }
+
+           /* if (pickedImage1==guessTheCountry.flags[i]){
+                correctResult.setText("Hii");
+
+            } //for image 1
+
+            if (pickedImage2==guessTheCountry.flags[i]){
+
+
+            }//for image 1
+
+            if (pickedImage3==guessTheCountry.flags[i]){
+
+
+            } //for image 1*/
+
+
+
+    }
+
+
+   /* public void cliickableImage(View view) {
         //  int value = findArrayIndexInt(threeElementList,values.length);
 
         while (true) {
@@ -200,19 +278,12 @@ public class GuessTheFlag extends AppCompatActivity {
             }
             break;
         }
-        //your code block
 
-        // int key =findArrayIndex(threeElementList,randomValue.toString());
-        //int valueIndex = threeElementList.entrySet();
-
-        //if (valueIndex == key){
-        //  correctResult.setText("CORRECT !!!");
-        //}else {
-    }
+    }*/
 
 
     //------------------ String array index finding -------------------------
-    public int findArrayIndex(HashMap<Integer, String> arr, String value) {
+    public int findArrayIndex(String[] arr, String value) {
 
         //if array is null
         if (arr == null) {
@@ -221,8 +292,8 @@ public class GuessTheFlag extends AppCompatActivity {
 
         int i = 0;
         //-----browse through array-----
-        while (i < arr.size()) {
-            if (arr.get(i) == value) {
+        while (i < arr.length) {
+            if (arr[i] == value) {
                 return i;
             } else {
                 i += 1;
@@ -234,17 +305,4 @@ public class GuessTheFlag extends AppCompatActivity {
     //end of findArrayIndex method
 
 
-    public void cliickableImage(View view) {
-        //  int value = findArrayIndexInt(threeElementList,values.length);
-
-            if (keyId.toString().equals(keys)) {
-                correctResult.setText("CORRECT !!!");
-                k = 0;
-            } else {
-                wrongResult.setText("INCORRECT !!!");
-                k++;
-            }
-
-
-    }
 }
