@@ -8,12 +8,14 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="386dp"
+        android:layout_height="29dp"
         android:layout_marginTop="16dp"
-        android:text="Fill the Corresponding Text Boxes"
+        android:gravity="left"
+        android:text="@string/qustion_4"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="22sp"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,10 +23,12 @@
 
     <ImageView
         android:id="@+id/advance_flag1"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="227dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/countryflag_1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -34,19 +38,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Enter Flag Name"
+        android:hint="@string/edittext_1"
         android:inputType="textShortMessage"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_flag1" />
+        app:layout_constraintTop_toBottomOf="@+id/advance_flag1"
+        android:autofillHints="" />
 
     <ImageView
         android:id="@+id/advance_flag2"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="236dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_1" />
 
@@ -56,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Enter Flag Name"
+        android:hint="@string/edittext_2"
         android:inputType="textShortMessage"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,10 +72,11 @@
 
     <ImageView
         android:id="@+id/advance_flag3"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="252dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_2" />
 
@@ -78,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Enter Flag Name"
+        android:hint="@string/edittext_3"
         android:inputType="textShortMessage"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,13 +98,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
         android:onClick="nextStartClick"
-        android:text="NEXT"
+        android:text="@string/next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_3" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_3"
+        app:layout_constraintVertical_bias="0.882" />
 
     <Button
         android:id="@+id/advance_submit"
@@ -107,12 +116,81 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Submit"
         android:onClick="advancedSubmit"
+        android:text="@string/submit_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nextButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_3"
+        app:layout_constraintVertical_bias="0.882" />
+
+    <TextView
+        android:id="@+id/final_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_3" />
+
+    <TextView
+        android:id="@+id/ans_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toTopOf="@+id/editText_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/advance_flag1"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/ans_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toTopOf="@+id/editText_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/advance_flag2"
+        app:layout_constraintTop_toBottomOf="@+id/editText_1" />
+
+
+    <TextView
+        android:id="@+id/ans_3"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toTopOf="@+id/editText_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/advance_flag3"
+        app:layout_constraintTop_toBottomOf="@+id/editText_2" />
+
 
 </android.support.constraint.ConstraintLayout>

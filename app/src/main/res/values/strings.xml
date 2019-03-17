@@ -19,5 +19,12 @@
     <string name="random_flag">random flag</string>
     <string name="nextbtn_1">NEXT</string>
     <string name="submitBtn_1">SUBMIT</string>
+    <string name="edittext_1">Enter Flag Name</string>
+    <string name="edittext_2">Enter Flag Name</string>
+    <string name="next_button">NEXT</string>
+    <string name="qustion_4">Fill the Corresponding Text Boxes</string>
+    <string name="countryflag_1">countryFlag_1</string>
+    <string name="edittext_3">Enter Flag Name</string>
+    <string name="submit_button">Submit</string>
 
 </resources>

@@ -152,28 +152,9 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
 
         //----------spinner click listener-----------------------
         spinner.setOnItemSelectedListener(this);
-
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                 country_name);
         spinner.setAdapter(myAdapter);
-
-
-       /* submitButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-
-                *//*for (String index : country_name) {
-
-                    if (flags.equals(country_name)){
-                        correctAnswer.setText("Correct answer !");
-                    }else {
-                        wrongAnswer.setText("Incorrect Answer !");
-                        finalAnswer.setText(country_name.length);
-                    }
-                }*//*
-            }
-        });*/
 
     }
 
@@ -200,10 +181,10 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
 
     // Equal to the last picked to the picked image
         lastPicked = pickedImage;
-        pickedId = findArrayIndexInt(flags,pickedImage);
+     //   pickedId = findArrayIndexInt(flags,pickedImage);
 
         //----------------- display random image -----------------------//
-        countryImage.setImageResource(flags[random.nextInt(flags.length)]);
+        countryImage.setImageResource(flags[pickedImage]);
 
 
    }
@@ -228,7 +209,58 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
 
 
 
-//------------------ String array index finding -------------------------
+
+//-------------------Spinner auto generated methods-----------------------
+
+    String feedback1,feedback2;
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        if (pickedImage==position){
+            feedback1 = "CONGRATULATIONS, The Answer is Correct !!!";
+            status1 = true;
+        }else{
+            feedback1="SORRY, The Answer is Incorrect !!!";
+            position=pickedImage;
+            status2=true;
+
+            feedback2=parent.getItemAtPosition(position).toString();
+        }
+        /*//------ On selecting a spinner item ----------
+        String item = parent.getItemAtPosition(position).toString();
+
+        //---------- getting indexes of elements --------
+        int arrayIndexOfCountry = findArrayIndex(country_name,item);
+        int index = flags[random.nextInt(flags.length)];
+        int arrayIndexOfFlag = findArrayIndexInt(flags,index);
+
+        String cAns,wAns,fAns;
+
+        if (arrayIndexOfFlag == arrayIndexOfCountry){
+            cAns = " CONGRATULATIONS, The Answer is Correct !!!";
+            correctAnswer.setText(cAns);
+        }else {
+
+            wAns = "SORRY, The Answer is Incorrect !!!";
+            wrongAnswer.setText(wAns);
+
+            fAns = country_name[arrayIndexOfFlag];
+            finalAnswer.setText(fAns);
+        }*/
+        // Showing selected spinner item
+
+
+      //  Toast.makeText(parent.getContext(), "Selected: " + position, Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+    //------------------ String array index finding -------------------------
     public int findArrayIndex(String[] arr, String spinnedWord) {
 
         //if array is null
@@ -248,7 +280,7 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
 
         return -1;
     }
-        //end of findArrayIndex method
+    //end of findArrayIndex method
 
 
 
@@ -275,54 +307,6 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
     }
     //end of findArrayIndexInt method
 
-
-
-//-------------------Spinner auto generated methods-----------------------
-
-    String feedback1,feedback2;
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        /*//------ On selecting a spinner item ----------
-        String item = parent.getItemAtPosition(position).toString();
-
-        //---------- getting indexes of elements --------
-        int arrayIndexOfCountry = findArrayIndex(country_name,item);
-        int index = flags[random.nextInt(flags.length)];
-        int arrayIndexOfFlag = findArrayIndexInt(flags,index);
-
-        String cAns,wAns,fAns;
-
-        if (arrayIndexOfFlag == arrayIndexOfCountry){
-            cAns = " CONGRATULATIONS, The Answer is Correct !!!";
-            correctAnswer.setText(cAns);
-        }else {
-
-            wAns = "SORRY, The Answer is Incorrect !!!";
-            wrongAnswer.setText(wAns);
-
-            fAns = country_name[arrayIndexOfFlag];
-            finalAnswer.setText(fAns);
-        }*/
-        // Showing selected spinner item
-
-        if (pickedImage==position){
-            feedback1 = "CONGRATULATIONS, The Answer is Correct !!!";
-            status1 = true;
-        }else{
-            feedback1="SORRY, The Answer is Incorrect !!!";
-            position=pickedImage;
-             status2=true;
-
-             feedback2=parent.getItemAtPosition(position).toString();
-        }
-      //  Toast.makeText(parent.getContext(), "Selected: " + position, Toast.LENGTH_LONG).show();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 
 
     //---------------------------getters and setters------------------------------
