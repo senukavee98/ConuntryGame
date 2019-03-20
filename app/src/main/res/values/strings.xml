@@ -26,5 +26,6 @@
     <string name="countryflag_1">countryFlag_1</string>
     <string name="edittext_3">Enter Flag Name</string>
     <string name="submit_button">Submit</string>
+    <string name="button_coundown_start">START</string>
 
 </resources>

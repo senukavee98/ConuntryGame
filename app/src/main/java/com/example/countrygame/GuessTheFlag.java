@@ -13,13 +13,15 @@ import java.util.Random;
 
 public class GuessTheFlag extends AppCompatActivity {
 
+  //---------- variables declaration -----------//
     private ImageView flag_01;
     private ImageView flag_02;
     private ImageView flag_03;
     private TextView flagName;
     private TextView correctResult;
-    private TextView wrongResult;
+    private TextView marks;
     private Button buttonStart;
+
   /*  private HashMap<Integer, String> threeElementList = new HashMap<Integer, String>();
     private Object[] keys;
     Object keyId;
@@ -27,11 +29,11 @@ public class GuessTheFlag extends AppCompatActivity {
     private List<Integer> id;
     private List<String> value;*/
 
+  //------- Constructors ------//
     GuessTheCountry guessTheCountry = new GuessTheCountry();
-
     Random random = new Random();
 
-    //Flag Array
+    //--------------- Integer list of Flags ---------------//
     Integer[] flags = {
             R.drawable.ad, R.drawable.ae, R.drawable.af, R.drawable.ag, R.drawable.ai, R.drawable.al, R.drawable.am, R.drawable.an, R.drawable.ao,
             R.drawable.aq, R.drawable.ar, R.drawable.as, R.drawable.at, R.drawable.au, R.drawable.aw, R.drawable.ax, R.drawable.az,
@@ -107,23 +109,28 @@ public class GuessTheFlag extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guess_the_flag);
 
-        //Imageview
+      //------ ImageView ------//
         flag_01 = findViewById(R.id.flag1);
         flag_02 = findViewById(R.id.flag2);
         flag_03 = findViewById(R.id.flag3);
 
+      //------ TextView ------//
         flagName = findViewById(R.id.flag_name);
         correctResult = findViewById(R.id.correct_results);
-        wrongResult = findViewById(R.id.wrong_results);
+        marks = findViewById(R.id.Marks);
+
+      //------ Button ------//
         buttonStart = findViewById(R.id.button_start);
 
     }
+
+//--------------------------- NEXT BUTTON Function - Continue with the game ------------------------------//
 
         int pickedImage1, lastPicked1;
         int pickedImage2, lastPicked2;
         int pickedImage3, lastPicked3;
         int count=1,countryName_index;
-        String name1,name2,name3;
+
 
     public void nextThreeFlags(View view) {
 
@@ -162,7 +169,6 @@ public class GuessTheFlag extends AppCompatActivity {
         flag_03.setImageResource(fi3);
 
 
-
         do {
             countryName_index = random.nextInt(guessTheCountry.country_name.length);
 
@@ -171,6 +177,8 @@ public class GuessTheFlag extends AppCompatActivity {
                 flagName.setText(name);
             }
         }while (!(countryName_index==pickedImage1 || countryName_index == pickedImage2 || countryName_index ==pickedImage3));
+
+
 
         /*if (count==1){
             name1 =guessTheCountry.country_name[pickedImage2];
@@ -210,25 +218,27 @@ public class GuessTheFlag extends AppCompatActivity {
 */
     }
 
-    int k = 0;
-    int index1,index2,index3;
+
+//--------------------------- Clickable Image - choosing the correct flag function -----------------------------//
+
+    int Marks =0;
 
     public void clickableImage(View view) {
 
-            /*index1 = findArrayIndex(guessTheCountry.country_name,name1);
-            index2 = findArrayIndex(guessTheCountry.country_name,name2);
-            index3 = findArrayIndex(guessTheCountry.country_name,name3);
-*/
+        //**** For image 1 ****//
             if (countryName_index==pickedImage1){
                 correctResult.setText("CORRECT !!!");
+                Marks++;
                 correctResult.setTextColor(getResources().getColor(R.color.green));
             }else {
                 correctResult.setText("WRONG !!!");
                 correctResult.setTextColor(getResources().getColor(R.color.red));
             }
 
+        //**** For image 2 ****//
             if (countryName_index==pickedImage2){
                 correctResult.setText("CORRECT !!!");
+                Marks++;
                 correctResult.setTextColor(getResources().getColor(R.color.green));
 
             } else {
@@ -236,13 +246,17 @@ public class GuessTheFlag extends AppCompatActivity {
                 correctResult.setTextColor(getResources().getColor(R.color.red));
             }
 
+       //**** For image 3 ****//
             if (countryName_index==pickedImage3){
                 correctResult.setText("CORRECT !!!");
+                Marks++;
                 correctResult.setTextColor(getResources().getColor(R.color.green));
             }else {
                 correctResult.setText("WRONG !!!");
                 correctResult.setTextColor(getResources().getColor(R.color.red));
             }
+
+
 
            /* if (pickedImage1==guessTheCountry.flags[i]){
                 correctResult.setText("Hii");

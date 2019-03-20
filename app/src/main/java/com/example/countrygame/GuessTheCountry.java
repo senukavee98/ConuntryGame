@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class GuessTheCountry extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    //ImageView declearation
+    //---------------- ImageView declearation ----------------//
     private ImageView countryImage;
     private Button start_game_button;
     private Button nextButton;
@@ -25,15 +25,13 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
     private TextView correctAnswer;
     private TextView wrongAnswer;
     private TextView finalAnswer;
-    private int pickedId;
     public static final int LOG_TAG = GuessTheCountry.class.getModifiers();
 
-
-    //Random object
+    //----Random object----//
     Random random = new Random();
 
 
-    //Flag Array
+    //---------------- Flag Array ----------------//
     Integer[] flags = {
             R.drawable.ad, R.drawable.ae, R.drawable.af, R.drawable.ag, R.drawable.ai, R.drawable.al, R.drawable.am, R.drawable.an, R.drawable.ao,
             R.drawable.aq, R.drawable.ar, R.drawable.as, R.drawable.at, R.drawable.au, R.drawable.aw, R.drawable.ax, R.drawable.az,
@@ -103,6 +101,7 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
             R.drawable.za, R.drawable.zm, R.drawable.zw
     };
 
+    //---------------- Country Array ----------------//
     String[] country_name = new String[]{
 
             "Andorra", "United Arab Emirates", "Afghanistan", "Antigua and Barbuda", "Anguilla", "Albania", "Armenia", "Netherlands Antilles",
@@ -137,41 +136,45 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guess_the_country);
 
+       // ------ImageView ------ //
         countryImage = findViewById(R.id.CountryFlag);
-      //  countryImage.setImageResource(R.drawable.ae);
 
+       // ------Buttons ------ //
         nextButton = findViewById(R.id.next);
         submitButton = findViewById(R.id.submit);
+        start_game_button= findViewById(R.id.gameStartbtn);
 
+       // ------Dropdown ------ //
         spinner = findViewById(R.id.spinner);
+
+       // ------TextViews ------ //
         correctAnswer = findViewById(R.id.correct_answer);
         wrongAnswer = findViewById(R.id.wrong_answer);
         finalAnswer = findViewById(R.id.final_answer);
-        start_game_button= findViewById(R.id.gameStartbtn);
-
 
         //----------spinner click listener-----------------------
         spinner.setOnItemSelectedListener(this);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
-                country_name);
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, country_name);
         spinner.setAdapter(myAdapter);
 
     }
 
 
+//-------------- Random flag change method (NEXT BUTTON)--------------//
 
-
-    //-------------------------- Random flag change method ---------------------------//
-    int pickedImage = 0, lastPicked = 0;
-    boolean status1 = false , status2 = false;
+        int pickedImage = 0, lastPicked = 0;
+        boolean status1 = false , status2 = false;
 
     public void nextFlag(View view) {
 
-       start_game_button.setVisibility(View.INVISIBLE);
+       //----- setting the visibility property of components ----//
+        start_game_button.setVisibility(View.INVISIBLE);
+        submitButton.setVisibility(View.VISIBLE);
+
+      //---- making TextBoxes null ----//
         correctAnswer.setText("");
         wrongAnswer.setText("");
         finalAnswer.setText("");
-        submitButton.setVisibility(View.VISIBLE);
 
      //-------remove duplications------//
         do {
@@ -179,15 +182,16 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
 
         } while (pickedImage == lastPicked);
 
-    // Equal to the last picked to the picked image
+     //----- Equal to the last picked to the picked image ----//
         lastPicked = pickedImage;
-     //   pickedId = findArrayIndexInt(flags,pickedImage);
 
-        //----------------- display random image -----------------------//
+      //---- display random image -----//
         countryImage.setImageResource(flags[pickedImage]);
 
 
    }
+
+   //---------------- SUBMIT BUTTON Function ----------------//
 
    public void submitSelected(View view){
        // nextButton.setVisibility(View.VISIBLE);
@@ -216,6 +220,7 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+      // ----- equalling the picked image with the position of the drop down list ---- //
         if (pickedImage==position){
             feedback1 = "CONGRATULATIONS, The Answer is Correct !!!";
             status1 = true;
@@ -224,8 +229,11 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
             position=pickedImage;
             status2=true;
 
+            // ----Getting the correct position of the picked image -----//
             feedback2=parent.getItemAtPosition(position).toString();
         }
+
+
         /*//------ On selecting a spinner item ----------
         String item = parent.getItemAtPosition(position).toString();
 
@@ -260,7 +268,7 @@ public class GuessTheCountry extends AppCompatActivity implements AdapterView.On
     }
 
 
-    //------------------ String array index finding -------------------------
+//------------------ String array index finding -------------------------//
     public int findArrayIndex(String[] arr, String spinnedWord) {
 
         //if array is null

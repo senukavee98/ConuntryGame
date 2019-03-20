@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class AdvancedLevel extends AppCompatActivity {
     private TextView ans_2;
     private TextView ans_3;
     private TextView finalResult;
+    private Button advance_btn_start;
 
 
     //constructors
@@ -49,11 +51,17 @@ public class AdvancedLevel extends AppCompatActivity {
         ans_2=findViewById(R.id.ans_2);
         ans_3=findViewById(R.id.ans_3);
         finalResult = findViewById(R.id.final_result);
+        advance_btn_start = findViewById(R.id.advance_btn_start);
 
         //hardcoded
-        aFlag1.setImageResource(R.drawable.fo);
+        /*aFlag1.setImageResource(R.drawable.fo);
         aFlag2.setImageResource(R.drawable.vg);
         aFlag3.setImageResource(R.drawable.sr);
+*/
+
+        editText_ans1.setVisibility(View.INVISIBLE);
+        editText_ans2.setVisibility(View.INVISIBLE);
+        editText_ans3.setVisibility(View.INVISIBLE);
 
     }
 
@@ -142,6 +150,11 @@ public class AdvancedLevel extends AppCompatActivity {
         editText_ans1.setEnabled(true);
         editText_ans2.setEnabled(true);
         editText_ans3.setEnabled(true);
+
+        editText_ans1.setVisibility(View.VISIBLE);
+        editText_ans2.setVisibility(View.VISIBLE);
+        editText_ans3.setVisibility(View.VISIBLE);
+        advance_btn_start.setVisibility(View.INVISIBLE);
 
         //---- Remove text in text boxes ----//
         editText_ans1.setText("");
