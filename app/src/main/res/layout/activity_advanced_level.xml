@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".AdvancedLevel">
 
+    <ImageView
+        android:id="@+id/background_image_advance"
+        android:layout_width="630dp"
+        android:layout_height="776dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/background_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.721"
+        app:srcCompat="@drawable/advances_level_bg" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="386dp"
@@ -15,7 +30,7 @@
         android:text="@string/qustion_4"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@android:color/black"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,21 +52,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/edittext_1"
         android:inputType="textShortMessage"
-        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_flag1"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/advance_flag1" />
 
     <ImageView
         android:id="@+id/advance_flag2"
         android:layout_width="236dp"
         android:layout_height="93dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/advance_flag2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +82,9 @@
         android:ems="10"
         android:hint="@string/edittext_2"
         android:inputType="textShortMessage"
-        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/advance_flag2" />
@@ -78,7 +97,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_2" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_2"
+        android:contentDescription="TODO" />
 
     <EditText
         android:id="@+id/editText_3"
@@ -88,7 +108,9 @@
         android:ems="10"
         android:hint="@string/edittext_3"
         android:inputType="textShortMessage"
-        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/advance_flag3" />
@@ -152,6 +174,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editText_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/advance_flag1"
@@ -169,6 +192,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editText_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/advance_flag2"
@@ -187,6 +211,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editText_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/advance_flag3"
@@ -205,7 +230,7 @@
         android:layout_marginBottom="8dp"
         android:background="@android:color/black"
         android:onClick="nextStartClick"
-        android:text="START THE GAME"
+        android:text="@string/start_the_game_advance"
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"

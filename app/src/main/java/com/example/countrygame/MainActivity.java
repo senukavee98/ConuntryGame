@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
   //----------------The action of hint guessing button----------------//
     public void guessingHint(View view) {
         Log.d(LOG_TAG,"Country Hint Button is clicked !");
+
+        Intent intent = new Intent(this,GuessTheHint.class);
+        startActivity(intent        );
     }
 
   //----------------The action of the flag guessing button----------------//

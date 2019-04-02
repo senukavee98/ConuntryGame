@@ -15,7 +15,6 @@
     <string name="flag_03">Flag_03</string>
     <string name="nextButton">Next</string>
     <string name="start_game">START THE GAME</string>
-    <string name="start_game_btn">START THE GAME</string>
     <string name="random_flag">random flag</string>
     <string name="nextbtn_1">NEXT</string>
     <string name="submitBtn_1">SUBMIT</string>
@@ -27,5 +26,19 @@
     <string name="edittext_3">Enter Flag Name</string>
     <string name="submit_button">Submit</string>
     <string name="button_coundown_start">START</string>
+    <string name="advance_flag2">TODO</string>
+    <string name="start_the_game_advance">START THE GAME</string>
+    <string name="countdown_text">00:00</string>
+    <string name="reset_countdown">Reset</string>
+    <string name="start_countdown">Start</string>
+    <string name="start_game_countryGuess">START THE GAME</string>
+    <string name="start_game_flagGuess">START THE GAME</string>
+    <string name="subtitle_hint">Enter the hint ltter in the textbox given</string>
+    <string name="header_hint">Guess The Hint</string>
+    <string name="flagImage_hint">randomly changing flags</string>
+    <string name="edittext_hint">Enter hint letters</string>
+    <string name="next_button_hint">NEXT</string>
+    <string name="start_ame_hint">START THE GAME</string>
+    <string name="switch_main">Switch</string>
 
 </resources>

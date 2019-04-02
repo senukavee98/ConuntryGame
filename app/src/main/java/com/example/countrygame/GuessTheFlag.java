@@ -174,7 +174,7 @@ public class GuessTheFlag extends AppCompatActivity {
 
             if (countryName_index==pickedImage1 || countryName_index == pickedImage2 || countryName_index ==pickedImage3){
                 String name = guessTheCountry.country_name[countryName_index];
-                flagName.setText(name);
+                flagName.setText("Country :- " + name);
             }
         }while (!(countryName_index==pickedImage1 || countryName_index == pickedImage2 || countryName_index ==pickedImage3));
 

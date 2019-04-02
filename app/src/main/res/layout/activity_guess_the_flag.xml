@@ -4,8 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
     tools:context=".GuessTheFlag">
+
+    <ImageView
+        android:id="@+id/background_image_flagGuess"
+        android:layout_width="630dp"
+        android:layout_height="800dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/background_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.721"
+        app:srcCompat="@drawable/guess_the_flag_bg" />
 
     <TextView
         android:id="@+id/header3"
@@ -36,7 +50,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="nextThreeFlags"
-        android:text="START THE GAME"
+        android:text="@string/start_game_flagGuess"
         app:layout_constraintBottom_toTopOf="@+id/callNext_flag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

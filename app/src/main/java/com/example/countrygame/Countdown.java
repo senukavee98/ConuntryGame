@@ -1,5 +1,6 @@
 package com.example.countrygame;
 
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,87 +8,174 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class Countdown extends AppCompatActivity {
 
-    private TextView countdouwnText;
-    private Button countdownButton;
+    private static final long START_TIME_IN_MILLIS = 10000;
 
-    private CountDownTimer countDownTimer;
-    private long timeLeftInMiliseconds = 10000;
-    private boolean timerRunning;
+    private TextView testingText;
+
+    private TextView mTextViewCountDown;
+    private Button mButtonStartPause;
+    private Button mButtonReset;
+
+    private CountDownTimer mCountDownTimer;
+
+    private boolean mTimerRunning;
+
+    private long mTimeLeftInMillis;
+    private long mEndTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_countdown);
+        setContentView(R.layout.activity_main);
 
-        countdouwnText = findViewById(R.id.countdown_txt);
-        countdownButton = findViewById(R.id.countdown_button);
+        mTextViewCountDown = findViewById(R.id.text_view_countdown);
 
-        countdownButton.setOnClickListener(new View.OnClickListener() {
+        mButtonStartPause = findViewById(R.id.button_start_pause);
+        mButtonReset = findViewById(R.id.button_reset);
+
+        testingText = findViewById(R.id.testing_text);
+
+        mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startStop();
+                if (mTimerRunning) {
+                    // pauseTimer();
+                } else {
+                    startTimer();
+                }
             }
         });
-        updateTimer();
 
+        mButtonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetTimer();
+            }
+        });
     } // end of OnCreate Method
 
 
 
-    private void startStop() {
-        if (timerRunning){
-            stopTimer();
-        }else {
-            startTimer();
-        }
-    }
-
-    private void stopTimer() {
-        countdownButton.setText("START");
-        countDownTimer.cancel();
-        countdouwnText.setText(timeLeftText);
-        timerRunning = false;
-    }
-
     private void startTimer() {
-        countDownTimer = new CountDownTimer(timeLeftInMiliseconds,1000) {
+        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
+
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeLeftInMiliseconds = millisUntilFinished;
-                updateTimer();
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
             }
 
             @Override
             public void onFinish() {
-
+                mTimerRunning = false;
+                updateButtons();
             }
         }.start();
-        countdownButton.setText("START");
-        timerRunning = true;
+
+        mTimerRunning = true;
+        updateButtons();
     }
 
-    String timeLeftText ;
-    private void updateTimer() {
-        int minutes = (int) timeLeftInMiliseconds/60000;
-        int seconds = (int) timeLeftInMiliseconds % 60000 / 1000;
+    /*private void pauseTimer() {
+        mCountDownTimer.cancel();
+        mTimerRunning = false;
+        updateButtons();
+    }*/
 
-        timeLeftText = "" + minutes;
-        timeLeftText += ":";
-        if (seconds < 10){
-            timeLeftText += "0";
-            timeLeftText += seconds;
+    private void resetTimer() {
+        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        updateCountDownText();
+        updateButtons();
+    }
 
-            countdouwnText.setText(timeLeftText);
-            countdownButton.setText("PAUSE");
+    private void updateCountDownText() {
+        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+        mTextViewCountDown.setText(timeLeftFormatted);
+
+
+        if (timeLeftFormatted.equals("00:00")){
+            mButtonStartPause.setVisibility(View.VISIBLE);
+            mButtonStartPause.setText("TIME OUT");
+            mButtonStartPause.setTextSize(minutes,50);
+            testingText.setText("DONE !!!");
 
         }
-        if (timeLeftText.equals("0:00")){
-            countdownButton.setText("TIME OUT");
-            countdouwnText.setTextSize(minutes,50);
-            countdouwnText.setText("Answers Submitted!");
+    }
 
+    private void updateButtons() {
+        if (mTimerRunning) {
+            mButtonReset.setVisibility(View.INVISIBLE);
+            // mButtonStartPause.setText("Pause");
+        } else {
+            mButtonStartPause.setText("Start");
+
+            if (mTimeLeftInMillis < 1000) {
+                mButtonStartPause.setVisibility(View.INVISIBLE);
+            } else {
+                mButtonStartPause.setVisibility(View.VISIBLE);
+            }
+
+            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
+                mButtonReset.setVisibility(View.VISIBLE);
+            } else {
+                mButtonReset.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putLong("millisLeft", mTimeLeftInMillis);
+        editor.putBoolean("timerRunning", mTimerRunning);
+        editor.putLong("endTime", mEndTime);
+
+        editor.apply();
+
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+
+        mTimeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
+        mTimerRunning = prefs.getBoolean("timerRunning", false);
+
+        updateCountDownText();
+        updateButtons();
+
+        if (mTimerRunning) {
+            mEndTime = prefs.getLong("endTime", 0);
+            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
+
+            if (mTimeLeftInMillis < 0) {
+                mTimeLeftInMillis = 0;
+                mTimerRunning = false;
+                updateCountDownText();
+                updateButtons();
+            } else {
+                startTimer();
+            }
         }
     }
 }

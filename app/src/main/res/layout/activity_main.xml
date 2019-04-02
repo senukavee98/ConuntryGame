@@ -121,7 +121,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="countDown"
-        android:text="Switch"
+        android:text="@string/switch_main"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
